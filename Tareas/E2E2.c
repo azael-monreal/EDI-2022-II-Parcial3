@@ -17,7 +17,7 @@
 
 #define SIZE 100
 
-void recursiveInverse(char* str, int size, int l);
+void recursiveInverse(char* str);
 
 int main(void)
 {
@@ -26,23 +26,23 @@ int main(void)
 	printf("Input: ");
 	scanf("%s", in);
 
-	recursiveInverse(in, strlen(in) - 1, 0);
+	recursiveInverse(in);
 
 	printf("Output: %s\n", in);
 
 	return 0;
 }
 
-void recursiveInverse(char* str, int size, int l)
+void recursiveInverse(char* str)
 {
-	if (l > size / 2)
+	int size = strlen(str);
+	if (size <= 1)
 		return;
-	else
-	{
-		char tmp = str[l];
-		str[l] = str[size - l];
-		str[size - l] = tmp;
+	char tmp = str[0];
+	str[0] = str[size - 1];
+	str[size - 1] = '\0';
 
-		recursiveInverse(str, size, l + 1);
-	}
+	recursiveInverse(str + 1);
+
+	str[size - 1] = tmp;
 }
