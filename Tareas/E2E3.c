@@ -47,10 +47,10 @@ void readTable(int* size, char keys[TBSIZE][STRSIZE], char kLabel[], float value
 	{
 		printf("\n*** Entry %d ***\n", i + 1);
 		printf("%s: ", kLabel);
-		char temp[STRSIZE];
-		scanf("%s", temp);
+		// char temp[STRSIZE];
+		scanf("%s", keys[i]);
 
-		strcpy(keys[i], temp);
+		// strcpy(keys[i], temp);
 
 		printf("%s: ", vLabel);
 		scanf("%f", &values[i]);
