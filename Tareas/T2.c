@@ -12,7 +12,6 @@
  */
 
 #include <stdio.h>
-#include <stdbool.h>
 
 #define SET_TYPE int
 #define SET_MSIZE 100
