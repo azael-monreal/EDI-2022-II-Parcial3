@@ -46,7 +46,7 @@ void readArray(int arr[], int* size, char name[])
 {
 	printf("%s size: ", name);
 	scanf("%d", size);
-	for (int i = 0; i < *size; i++)
+	for(int i = 0; i < *size; i++)
 	{
 		printf("%s[%d]: ", name, i);
 		scanf("%d", &arr[i]);
@@ -57,20 +57,17 @@ int searchIndex(int list[], int size, int target)
 {
 	int l = 0, r = size - 1;
 
-	while (l <= r)
+	while(l <= r)
 	{
 		int guess = (l + r) / 2;
 
-		if (list[guess] == target)
+		if(list[guess] == target)
 			return guess;
 
+		if(list[guess] < target)
+			l = guess + 1;
 		else
-		{
-			if (list[guess] < target)
-				l = ++guess;
-			else
-				r = --guess;
-		}
+			r = guess - 1;
 	}
 	return l;
 }
