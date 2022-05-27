@@ -85,6 +85,6 @@ void sortStudents(Student* st, int s)
 
 void printStudents(Student* st, int s)
 {
-	for(int i = 0; i < 10; i++)
+	for(int i = 0; i < s; i++)
 		printf("%s, %s: %.1f\n", st[i].lastName, st[i].name, st[i].average);
 }
