@@ -16,17 +16,6 @@ int main()
 	Field field;
 
 	initField(&field);
-
-	/*
-	printf("%d, %d\n", field.w, field.h);
-	for(int i = 0; i < field.h; i++)
-	{
-		for(int j = 0; j < field.w; j++)
-			printf("[%d, %d]: %d \t", j, i, field.obstacles[j][i]);
-		printf("\n");
-	}
-	*/
-
 	findPath(field);
 
 	printf("\n");
@@ -65,6 +54,7 @@ void findPath(Field f)
 {
 	int x = f.w - 1, y = f.h - 1;
 	int visited[100][100] = {0};
+	visited[x][y] = 1;
 
 	Stack* s = s_new();
 	s_push(s, x + (y * f.h));
@@ -76,24 +66,18 @@ void findPath(Field f)
 			printf("no path");
 			return;
 		}
-		int pos = s_peek(s);
-		x = pos % f.h;
-		y = pos / f.h;
+
 		visited[x][y] = 1;
+
 		if(y - 1 >= 0 && !f.obstacles[x][y - 1] && !visited[x][y - 1])
-		{
-			y--;
-			s_push(s, x + (y * f.h));
-		}
+			s_push(s, x + (--y * f.h));
+		else if(x - 1 >= 0 && !f.obstacles[x - 1][y] && !visited[x - 1][y])
+			s_push(s, --x + (y * f.h));
 		else
 		{
-			if(x - 1 >= 0 && !f.obstacles[x - 1][y] && !visited[x - 1][y])
-			{
-				x--;
-				s_push(s, x + (y * f.h));
-			}
-			else
-				s_pop(s);
+			s_pop(s);
+			x = s_peek(s) % f.h;
+			y = s_peek(s) / f.h;
 		}
 	}
 
